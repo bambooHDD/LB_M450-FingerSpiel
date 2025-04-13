@@ -1,4 +1,3 @@
-// path=Spiel/Game/MoveProcessor.java
 package Spiel.Game;
 
 import Spiel.Spieler.ISpieler;
@@ -124,13 +123,17 @@ public class MoveProcessor {
 
         if (validMove) {
             // Check if game is over
-            if (isGameOver()) {
-                ISpieler winner = determineWinner();
-                // Store the winner somewhere that MatchSystem can access it
-                // For example, assuming GameState has a method to set the last winner:
-                gameState.setWinner(winner); // You might need to implement this method
+            gameState.checkGameStatus();
+            if (!gameState.isGameActive()) {
+                ISpieler winner = gameState.determineWinner();
 
-                // Then call processGameEnd without parameters
+                // Update the score for the winner - BUT ONLY HERE, NOT IN processGameEnd
+                if (winner != null) {
+                    matchSystem.addPoint(spieler.indexOf(winner) + 1);
+                }
+
+                // Call processGameEnd but REMOVE the score update in that method
+                // Just use it to prepare the next game
                 matchSystem.processGameEnd();
             } else {
                 // Move to next player
@@ -139,36 +142,6 @@ public class MoveProcessor {
         }
 
         return validMove;
-    }
-
-    /**
-     * Checks if the game is over (one player has both hands out)
-     * @return true if the game is over
-     */
-    private boolean isGameOver() {
-        int activePlayers = 0;
-        for (ISpieler player : spieler) {
-            if (gameState.isPlayerActive(player)) {
-                activePlayers++;
-                if (activePlayers > 1) {
-                    return false;
-                }
-            }
-        }
-        return activePlayers <= 1;
-    }
-
-    /**
-     * Determines the winner of the current game
-     * @return the winning player or null if there is no winner (draw)
-     */
-    private ISpieler determineWinner() {
-        for (ISpieler player : spieler) {
-            if (gameState.isPlayerActive(player)) {
-                return player;
-            }
-        }
-        return null; // Draw or no winner
     }
 
     /**

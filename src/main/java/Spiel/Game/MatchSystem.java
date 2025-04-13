@@ -1,5 +1,6 @@
 package Spiel.Game;
 
+import Spiel.Spiel;
 import Spiel.Spieler.ISpieler;
 
 import java.util.HashMap;
@@ -34,11 +35,7 @@ public class MatchSystem {
             return false;
         }
 
-        ISpieler winner = currentGame.determineWinner();
-        if (winner != null) {
-            int playerIndex = currentGame.getPlayerIndex(winner);
-            addPoint(playerIndex + 1);
-        }
+
 
         if (isMatchComplete()) {
             return true;
@@ -53,7 +50,9 @@ public class MatchSystem {
      *
      * @param playerIndex 1-based player index.
      */
+    // Modify MatchSystem.java
     public void addPoint(int playerIndex) {
+        // Update internal score tracking
         int currentScore = playerScores.getOrDefault(playerIndex, 0);
         playerScores.put(playerIndex, currentScore + 1);
     }

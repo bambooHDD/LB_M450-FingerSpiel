@@ -72,9 +72,8 @@ public class Spiel {
      * @return A string representing the match score.
      */
     public String getMatchScore() {
-        return scoreManager.getScoreString(spieler);
+        return matchSystem.getScoreString(spieler);
     }
-
     /**
      * Skips the current player's turn.
      */

@@ -14,11 +14,22 @@ Fingerspiel (auch bekannt als Chopsticks) ist ein Handspiel mit folgenden Regeln
         - Mindestens eine Hand Finger hat
 
 3. **Handstatus**:
-    - Wenn eine Hand genau 5 Finger erreicht, "stirbt" sie (wird zu 0 Fingern)
+    - Wenn eine Hand genau 5 Finger erreicht, "schliesst" man sie (wird zu 0 Fingern)
     - Eine Hand mit 0 Fingern kann weder angreifen noch angegriffen werden
 
-4. **Spielende**: Ein Spieler verliert, wenn beide Hände "tot" sind (0 Finger).
+4. **Spielende**: Ein Spieler verliert, wenn beide Hände "geschlossen" sind (0 Finger).
 
+## Spielertypen
+
+Das Spiel unterstützt verschiedene Spielerkonstellationen:
+
+1. **Mensch gegen Mensch**: Spiele gegen einen anderen Spieler, der auf demselben Computer spielt.
+
+2. **Mensch gegen Computer**: Spiele gegen einen KI-Gegner mit einstellbarer Schwierigkeit.
+
+3. **Computer gegen Computer**: Beobachte, wie zwei KI-Spieler gegeneinander antreten.
+
+4. **Mehrspielermodus**: Unterstützt bis zu 9 Spieler oder Bots in einem einzigen Spiel.
 ## Spielsteuerung
 
 Um einen Zug auszuführen, verwende folgende Befehle:

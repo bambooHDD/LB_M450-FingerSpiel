@@ -55,6 +55,9 @@ public class UI {
      * Displays the current game state.
      */
     private void displayGameState() {
+        // Clear console before displaying new state
+        clearConsole();
+
         System.out.println("\n----- Game " + spiel.getCurrentMatchNumber() + " -----");
         System.out.println("Match score: " + spiel.getMatchScore());
 
@@ -63,6 +66,26 @@ public class UI {
             System.out.println(indicator + player.toString());
         }
         System.out.println();
+    }
+
+    /**
+     * Clears the console screen based on operating system
+     */
+    private void clearConsole() {
+        try {
+            final String os = System.getProperty("os.name");
+            if (os.contains("Windows")) {
+                // For Windows
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                // For Unix/Linux/Mac
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (Exception e) {
+            // Fallback if clearing fails
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        }
     }
 
     /**
